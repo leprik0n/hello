@@ -11,7 +11,9 @@ int main()
     int min_kb, max_kb;
     string travel;
     cout << "Enter min and max sizes of cache (in KB): ";
-    cin >> min_kb >> max_kb;
+    //cin >> min_kb >> max_kb;
+	min_kb = 128;
+	max_kb = 6144;
     Cache cache(min_kb, max_kb);
     int directSize, reversesize, randomSize;
     Cache::Experiment *direct = cache.MakeTest("direct", directSize);
