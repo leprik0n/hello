@@ -10,7 +10,5 @@ else()
 endif()
 
 enable_testing()
-
 add_executable(test_cache main.cpp)
-
 add_test(NAME ${PROJECT_NAME} COMMAND test_cache)
