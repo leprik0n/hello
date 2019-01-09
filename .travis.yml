@@ -5,7 +5,6 @@ language: cpp
 compiler:
   -clang
   -gcc
-  -MinGW
 
 before_install:
   - pip install --user cpp-coveralls
