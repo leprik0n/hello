@@ -9,7 +9,7 @@ before_install:
   - pip install --user cpp-coveralls
 
 install:
-  - if [ "$CXX" = "g++" ]; then export CXX="g++-5" CC="gcc-5"; fi
+  - if [ "$CXX" = "g++" ]; then export CXX="g++-6" CC="gcc-6"; fi
   - mkdir build
   - cd build
   - cmake ..
@@ -22,7 +22,6 @@ addons:
   apt:
     sources:
     - ubuntu-toolchain-r-test
-    - llvm-toolchain-precise-5
     packages:
-    - gcc-5
-    - g++-5
+    - gcc-6
+    - g++-6
