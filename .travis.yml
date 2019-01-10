@@ -3,15 +3,13 @@ sudo: false
 language: cpp
 
 compiler:
-  -clang
   -gcc
 
 before_install:
   - pip install --user cpp-coveralls
 
 install:
-  - if [ "$CXX" = "g++" ]; then export CXX="g++-5.4" CC="gcc-5.4"; fi
-  - if [ "$CXX" = "clang++" ]; then export CXX="clang++-4" CC="clang-4"; fi
+  - if [ "$CXX" = "g++" ]; then export CXX="g++-5.0" CC="gcc-5.0"; fi
   - mkdir build
   - cd build
   - cmake ..
@@ -24,8 +22,7 @@ addons:
   apt:
     sources:
     - ubuntu-toolchain-r-test
-    - llvm-toolchain-precise-3.7
+    - llvm-toolchain-precise-5.0
     packages:
-    - gcc-5.4
-    - g++-5.4
-    - clang-4
+    - gcc-5.0
+    - g++-5.0
