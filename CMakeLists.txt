@@ -6,13 +6,13 @@ if (MSVC)
     add_definitions(/W4)
 else()
     add_definitions(-Wall)
-    add_definitions(-std=c++11)
+    add_definitions(-std=c++17)
 endif()
 
 include_directories(include)
 
 enable_testing()
 
-add_executable(test_cache main.cpp)
+add_executable(test_json main.cpp)
 
-add_test(NAME ${PROJECT_NAME} COMMAND test_cache)
+add_test(NAME ${PROJECT_NAME} COMMAND test_json)
