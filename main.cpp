@@ -1,22 +1,35 @@
 #include <iostream>
-#include <string>
-#include <chrono>
-#include <cmath>
-#include "cache.h"
+#include "json.h"
 
-using namespace std;
+int main() {
 
-int main()
-{
-    int min_kb, max_kb;
-    string travel;
-    cout << "Enter min and max sizes of cache (in KB): ";
-    //cin >> min_kb >> max_kb;
-	min_kb = 128;
-	max_kb = 6144;
-    Cache cache(min_kb, max_kb);
-    int directSize, reversesize, randomSize;
-    Cache::Experiment *direct = cache.MakeTest("direct", directSize);
-    Cache::Experiment *reverse = cache.MakeTest("reverse", reversesize);
-    Cache::Experiment *random = cache.MakeTest( "random", randomSize);
+	const char * const json_data = R"({
+    "lastname" : "Ivanov",
+    "firstname" : "Ivan",
+    "age" : 25,
+    "islegal" : false,
+    "marks" : [
+        4,5,5,5,2,3
+    ],
+    "address" : {
+        "city" : "Moscow",
+        "street" : "Vozdvijenka"
+    }
+})";
+
+	Json object = Json::parse(json_data);
+	cout << std::any_cast<std::string>(object["lastname"]) << endl;
+	cout << std::any_cast<bool>(object["islegal"]) << endl;
+	cout << std::any_cast<int>(object["age"]) << endl;
+
+	auto marks = std::any_cast<Json>(object["marks"]);
+	cout << std::any_cast<int>(marks[0]) << endl;
+	cout << std::any_cast<int>(marks[1]) << endl;
+
+	auto address = std::any_cast<Json>(object["address"]);
+	cout << std::any_cast<std::string>(address["city"]) << endl;
+	cout << std::any_cast<std::string>(address["street"]) << endl;
+
+	system("pause");
+	return 0;
 }
