@@ -1,15 +1,16 @@
-sudo: false
-
 language: cpp
-
-compiler:
-  -gcc
+compiler: gcc
+dist: trusty
 
 before_install:
-  - pip install --user cpp-coveralls
+  # C++17
+  - sudo add-apt-repository -y ppa:ubuntu-toolchain-r/test
+  - sudo apt-get update -qq
 
 install:
-  - if [ "$CXX" = "g++" ]; then export CXX="g++-6" CC="gcc-6"; fi
+   # C++17
+  - sudo apt-get install -qq g++-6
+  - sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-6 90
   - mkdir build
   - cd build
   - cmake ..
@@ -17,11 +18,3 @@ install:
 
 script:
   - ctest -V
-
-addons:
-  apt:
-    sources:
-    - ubuntu-toolchain-r-test
-    packages:
-    - gcc-6
-    - g++-6
